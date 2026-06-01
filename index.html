@@ -609,8 +609,6 @@ nav.scrolled .nav-logo img{
 }
 
 
-/* HERO IMMEDIATE LOAD */
-.slide:first-child{opacity:1}
 
 
 </style>
@@ -945,10 +943,7 @@ slideEls.forEach(function(el) {
 });
 
 setCaption(0);
-slideEls[0].animate([{opacity:1,transform:'scale(1.00)'},{opacity:1,transform:'scale(1.00)'}],{duration:HOLD+FADE*2,fill:'forwards'});
-    clearTimeout(timer);
-    timer = setTimeout(function(){goTo(1);}, HOLD);
-    cur=0;
+showSlide(0);
 
 // NAV scroll
 var nav = document.getElementById('nav');
