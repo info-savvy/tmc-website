@@ -326,6 +326,15 @@ nav.scrolled .nav-logo img{
   justify-content:center;
 }
 
+
+@media(max-width:768px){
+  .journeys-grid{grid-template-columns:1fr !important}
+  .journey-card{display:block !important}
+  .journey-img{height:220px !important;width:100% !important;aspect-ratio:unset !important;object-fit:cover}
+  .journey-card.featured{grid-column:span 1 !important}
+  .featured-body{padding:1.5rem !important}
+}
+
 </style>
 </head><body>
 <nav id="nav">

@@ -611,6 +611,16 @@ nav.scrolled .nav-logo img{
 
 
 
+
+@media(max-width:768px){
+  .exp-grid{grid-template-columns:1fr !important;grid-template-rows:auto !important}
+  .exp-card,.exp-card.tall,.exp-card.wide{
+    aspect-ratio:16/9 !important;
+    grid-column:span 1 !important;
+    grid-row:span 1 !important;
+  }
+}
+
 </style>
 </head>
 <body>
