@@ -644,6 +644,7 @@ nav.scrolled .nav-logo img{
     </div>
   </div>
   <div class="hero-caption">
+    <div id="dots"></div>
     <span class="hero-caption-mood" id="capMood"></span>
     <span class="hero-caption-text" id="capText"></span>
   </div>
@@ -819,6 +820,9 @@ function toggleMenu() {
   document.body.style.overflow = isOpen ? 'hidden' : '';
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+
+
 var SLIDES = [
   {mood:'Island Escapes',           caption:'Nosy Iranja \u2014 where two islands meet a single white sandbar'},
   {mood:'Sail with Luna Moon',      caption:'Exclusive voyages aboard our 115-year-old historic schooner', vid:true},
@@ -835,13 +839,15 @@ var dotsEl = document.getElementById('dots');
 var timer = null;
 
 // Build dots
-SLIDES.forEach(function(_, i) {
-  var b = document.createElement('button');
-  b.className = 'dot' + (i === 0 ? ' on' : '');
-  b.setAttribute('aria-label', 'Slide ' + (i + 1));
-  b.addEventListener('click', function() { goTo(i); });
-  dotsEl.appendChild(b);
-});
+if (dotsEl) {
+  SLIDES.forEach(function(_, i) {
+    var b = document.createElement('button');
+    b.className = 'dot' + (i === 0 ? ' on' : '');
+    b.setAttribute('aria-label', 'Slide ' + (i + 1));
+    b.addEventListener('click', function() { goTo(i); });
+    dotsEl.appendChild(b);
+  });
+}
 
 function setCaption(i) {
   var el1 = document.getElementById('capMood');
@@ -959,6 +965,8 @@ function closePanel() {
   activePinEl = null;
   document.getElementById('mapPanel').classList.remove('open');
 }
+
+});
 </script>
 </body>
 </html>
