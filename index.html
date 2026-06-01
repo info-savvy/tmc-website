@@ -820,85 +820,68 @@ function toggleMenu() {
   document.body.style.overflow = isOpen ? 'hidden' : '';
 }
 
-document.addEventListener('DOMContentLoaded', function() {
+// ── SLIDESHOW ──────────────────────────────────────────
+var _slides = document.querySelectorAll('.slide');
+var _cur = 0;
+var _HOLD = 6000;
+var _FADE = 1200;
 
-
-var SLIDES = [
-  {mood:'Island Escapes',           caption:'Nosy Iranja \u2014 where two islands meet a single white sandbar'},
-  {mood:'Sail with Luna Moon',      caption:'Exclusive voyages aboard our 115-year-old historic schooner', vid:true},
-  {mood:'Boutique Beachfront Stays',caption:'Handpicked stays from rustic retreats to world-class lodges'},
-  {mood:'Wild Madagascar',          caption:'Tsingy de Ankarana \u2014 a cathedral of razor-sharp limestone'},
-  {mood:'Avenue of the Baobabs',    caption:'Morondava \u2014 one of the world\u2019s last great wild places'},
-  {mood:'Wildlife Encounters',      caption:'Nosy Komba \u2014 black lemurs roaming free in sacred forest'}
+var CAPTIONS = [
+  {mood:'Island Escapes',           text:'Nosy Iranja — where two islands meet a single white sandbar'},
+  {mood:'Sail with Luna Moon',      text:'Exclusive voyages aboard our 115-year-old historic schooner'},
+  {mood:'Boutique Beachfront Stays',text:'Handpicked stays from rustic retreats to world-class lodges'},
+  {mood:'Wild Madagascar',          text:'Tsingy de Ankarana — a cathedral of razor-sharp limestone'},
+  {mood:'Avenue of the Baobabs',    text:'Morondava — one of the world’s last great wild places'},
+  {mood:'Wildlife Encounters',      text:'Nosy Komba — black lemurs roaming free in sacred forest'}
 ];
 
-var HOLD = 6000, FADE = 1200;
-var cur = 0;
-var slideEls = Array.from(document.querySelectorAll('.slide'));
-var dotsEl = document.getElementById('dots');
-var timer = null;
+function _showSlide(n) {
+  _slides[_cur].style.opacity = '0';
+  _cur = (n + _slides.length) % _slides.length;
+  _slides[_cur].style.opacity = '1';
+  var m = document.getElementById('capMood');
+  var t = document.getElementById('capText');
+  if (m && CAPTIONS[_cur]) m.textContent = CAPTIONS[_cur].mood;
+  if (t && CAPTIONS[_cur]) t.textContent = CAPTIONS[_cur].text;
+  // update dots
+  var dots = document.querySelectorAll('.dot');
+  dots.forEach(function(d,i){ d.classList.toggle('on', i===_cur); });
+}
+
+// Set transition on all slides
+for (var i=0; i<_slides.length; i++) {
+  _slides[i].style.transition = 'opacity ' + _FADE + 'ms ease-in-out';
+  _slides[i].style.opacity = '0';
+}
+
+// Show first slide immediately
+_slides[0].style.transition = 'none';
+_slides[0].style.opacity = '1';
+
+// Start cycle
+setInterval(function() {
+  _showSlide(_cur + 1);
+}, _HOLD);
+
+// Set initial caption
+var _m = document.getElementById('capMood');
+var _t = document.getElementById('capText');
+if (_m) _m.textContent = CAPTIONS[0].mood;
+if (_t) _t.textContent = CAPTIONS[0].text;
 
 // Build dots
-if (dotsEl) {
-  SLIDES.forEach(function(_, i) {
-    var b = document.createElement('button');
-    b.className = 'dot' + (i === 0 ? ' on' : '');
-    b.setAttribute('aria-label', 'Slide ' + (i + 1));
-    b.addEventListener('click', function() { goTo(i); });
-    dotsEl.appendChild(b);
-  });
+var _dotsEl = document.getElementById('dots');
+if (_dotsEl) {
+  for (var j=0; j<CAPTIONS.length; j++) {
+    (function(idx){
+      var b = document.createElement('button');
+      b.className = 'dot' + (idx===0 ? ' on' : '');
+      b.onclick = function(){ _showSlide(idx); };
+      _dotsEl.appendChild(b);
+    })(j);
+  }
 }
 
-function setCaption(i) {
-  var el1 = document.getElementById('capMood');
-  var el2 = document.getElementById('capText');
-  if (el1) el1.textContent = SLIDES[i].mood;
-  if (el2) el2.textContent = SLIDES[i].caption;
-  document.querySelectorAll('.dot').forEach(function(d, j) {
-    d.classList.toggle('on', j === i);
-  });
-}
-
-function showSlide(n) {
-  clearTimeout(timer);
-  var next = ((n % slideEls.length) + slideEls.length) % slideEls.length;
-  var prevEl = slideEls[cur];
-  var nextEl = slideEls[next];
-
-  // Position next slide behind current, fully transparent
-  nextEl.style.transition = 'none';
-  nextEl.style.opacity = '0';
-  nextEl.style.zIndex = '2';
-  prevEl.style.zIndex = '3';
-
-  // Force reflow so transition fires
-  nextEl.offsetHeight;
-
-  // Fade next slide in
-  nextEl.style.transition = 'opacity ' + FADE + 'ms ease-in-out';
-  nextEl.style.opacity = '1';
-
-  // After fade completes, hide previous slide
-  setTimeout(function() {
-    prevEl.style.transition = 'none';
-    prevEl.style.opacity = '0';
-    prevEl.style.zIndex = '1';
-    nextEl.style.zIndex = '2';
-    cur = next;
-  }, FADE);
-
-  cur = next;
-  setCaption(cur);
-  timer = setTimeout(function() { showSlide(cur + 1); }, HOLD + FADE);
-}
-
-// Init — show first slide immediately
-slideEls[0].style.opacity = '1';
-slideEls[0].style.zIndex = '2';
-setCaption(0);
-timer = setTimeout(function() { showSlide(1); }, HOLD);
-
-function goTo(n) { showSlide(n); }
 
 // NAV scroll
 
@@ -966,7 +949,6 @@ function closePanel() {
   document.getElementById('mapPanel').classList.remove('open');
 }
 
-});
 </script>
 </body>
 </html>
