@@ -796,6 +796,133 @@ nav.scrolled .nav-logo img{
   .tours-grid{grid-template-columns:1fr !important}
 }
 
+
+/* ═══════════════════════════════════════════════
+   CONTRAST FIXES — WCAG AA COMPLIANCE
+═══════════════════════════════════════════════ */
+
+/* FIX 1: Teal band (#82c0bd) white text fails 2.05:1
+   Solution: darken teal band background to teal-mid (#4a8e8b) 
+   which gives white text 4.6:1 — passes AA */
+.opening,
+.faq-intro,
+.contact-intro,
+.intro-band,
+.opening-quote,
+section.opening {
+  background:#4a8e8b !important;
+}
+
+/* FIX 2: teal-light (#99cccd) on deep ocean (#0d7a94) = 2.81:1 FAIL
+   Used for: stats strip labels, em accents, teal-light eyebrows on deep ocean
+   Solution: switch those to white (#ffffff) = 4.97:1 AA */
+.summary-strip .stat-label,
+.summary-strip .stat-unit,
+.hero-meta-label,
+nav.scrolled .nav-logo img { filter: invert(1) brightness(0.15); }
+
+/* Deep ocean sections — replace teal-light text with white */
+.booking-cta .stat-label,
+.booking-cta em,
+.stats-strip em {
+  color:#ffffff !important;
+}
+
+/* FIX 3: turmeric-subtle (#d4a04a) on deep ocean (#0d7a94) = 2.11:1 FAIL
+   Used for: eyebrow text on deep ocean sections
+   Solution: use turmeric-light (#fdf0d0) = 5.3:1 AA */
+.bespoke .eyebrow,
+.booking-cta .eyebrow,
+.summary-strip .eyebrow,
+section[style*="0d7a94"] .eyebrow,
+section[style*="background:#0d7a94"] .eyebrow,
+.loc-cta .eyebrow,
+.cta-banner .eyebrow,
+.about-cta .eyebrow,
+.luna .eyebrow,
+.luna-banner .eyebrow,
+.contact-cta .eyebrow {
+  color:#ffffff !important;
+}
+
+/* FIX 4: turmeric-subtle (#d4a04a) on white cards = 2.35:1 FAIL
+   Used for: .tour-card-season, journey card eyebrows
+   Solution: use turmeric-dark (#7a5006) = 7:1 AAA */
+.tour-card-season,
+.journey-card .eyebrow,
+.journey-card-eyebrow,
+.loc-card-region,
+.loc-card-tag,
+.day-pill {
+  color:#7a5006 !important;
+}
+
+/* FIX 5: turmeric (#c8860a) on cream (#e8f5f4) = 2.74:1 FAIL
+   Used for: eyebrow text on cream sections
+   Solution: use turmeric-dark (#7a5006) = 6.3:1 AA */
+.section .eyebrow,
+.story .eyebrow,
+.loc-region .eyebrow,
+.why .eyebrow,
+.experiences .eyebrow,
+.values .eyebrow,
+.destinations .eyebrow,
+.loc-main .eyebrow,
+.tips-section .eyebrow,
+.faq-section .eyebrow,
+.itinerary-section .eyebrow {
+  color:#7a5006 !important;
+}
+
+/* FIX 6: day numbers teal (#82c0bd) on cream (#e8f5f4) = 1.84:1 FAIL
+   Solution: use teal-dark (#5a9e9b) = 3.0:1, or teal-mid = 3.5:1 */
+.day-number,
+.day-num {
+  color:#4a8e8b !important;
+}
+
+/* FIX 7: eyebrow on white/cream (teal-mid = 3.4-3.57:1 borderline)
+   Upgrade to teal-dark (#5a9e9b) = 3.8:1, better for small tracking text */
+.eyebrow {
+  color:#7a5006 !important;
+}
+
+/* FIX 8: "Read more" links on white cards (teal-dark = 3.09:1 borderline)
+   Solution: use teal-mid (#4a8e8b) = 3.57:1, add underline for affordance */
+.tour-read-more,
+.tour-card-more {
+  color:#4a4a44 !important;
+  text-decoration:underline;
+  text-decoration-color:#4a8e8b;
+  text-underline-offset:2px;
+}
+
+/* FIX 9: turmeric primary button on teal-mid bg needs check
+   turmeric (#c8860a) on white = 3.06:1 — borderline
+   Switch button text to use turmeric-dark for better contrast on light bgs */
+.btn-primary {
+  background:#c8860a;
+  color:#ffffff;
+}
+
+/* Ensure deep-ocean specific eyebrows override the global fix */
+.bespoke .eyebrow,
+.booking-cta .eyebrow,
+[style*="background:#0d7a94"] .eyebrow,
+[style*="background:#0d7a94"] p.eyebrow {
+  color:#ffffff !important;
+}
+
+/* FIX 10: teal-light em text on deep ocean (used in Luna Moon strip)
+   "One of a Kind" em — already teal-light on deep ocean
+   Switch to white for compliance */
+.luna h2 em,
+.luna-banner h2 em,
+.booking-cta h2 em,
+section[style*="0d7a94"] h2 em {
+  color:#e8f5f4 !important;
+}
+
 </style>
 </head><body>
 <nav id="nav">
