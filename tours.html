@@ -210,7 +210,7 @@ html,body{max-width:100%;overflow-x:hidden}
   transition:color .15s,background .15s;white-space:nowrap;text-shadow:none !important}
 .dropdown a:hover{color:var(--turmeric) !important;background:var(--cream-dark)}
 .progress-bar-wrap:empty{display:none}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:4rem;margin-bottom:3rem}
+
 .footer-brand img{height:auto !important;width:280px !important;max-width:280px !important;
   filter:brightness(0);opacity:.75;display:block;margin-bottom:1rem}
 .footer-col h4{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
@@ -324,6 +324,175 @@ nav.scrolled .nav-logo img{
   flex-direction:column;
   align-items:center;
   justify-content:center;
+}
+
+
+/* ═══════════════════════════════════════════════
+   GLOBAL RESPONSIVE — TABLET (max-width:1024px)
+═══════════════════════════════════════════════ */
+@media(max-width:1024px){
+  /* About */
+  .values-grid{grid-template-columns:repeat(2,1fr) !important}
+  .exp-strip-grid{grid-template-columns:repeat(2,1fr) !important}
+  /* Itineraries */
+  .journeys-grid{grid-template-columns:1fr 1fr !important}
+  .journey-card.featured{grid-column:span 2 !important}
+  /* Tours */
+  .tours-grid{grid-template-columns:repeat(3,1fr) !important}
+  /* Location body */
+  .loc-body{grid-template-columns:1fr !important}
+  .loc-sidebar{position:static !important;border-left:none !important;border-top:1px solid var(--cream-dark)}
+  /* Destinations page */
+  .dest-layout{grid-template-columns:1fr !important}
+  .dest-map-col{display:none}
+}
+
+/* ═══════════════════════════════════════════════
+   GLOBAL RESPONSIVE — MOBILE (max-width:768px)
+═══════════════════════════════════════════════ */
+@media(max-width:768px){
+  /* ── TYPOGRAPHY ── */
+  .hero-title{font-size:clamp(2.8rem,12vw,4.5rem) !important}
+  .sec-title{font-size:clamp(1.6rem,6vw,2.4rem) !important}
+  h1,h2{word-break:break-word}
+
+  /* ── HERO / PAGE HERO ── */
+  .hero{min-height:100svh}
+  .hero-content{padding:5rem 1.5rem 3rem !important}
+  .hero-actions{flex-direction:column;align-items:flex-start;gap:.8rem !important}
+  .hero-actions a,.hero-actions button{width:100%;text-align:center}
+  .page-hero{height:50vh !important;min-height:320px !important}
+  .page-hero-content{padding:0 1.5rem 3rem !important}
+  .about-hero{height:50vh !important}
+  .about-hero-content{padding:0 1.5rem 3rem !important}
+  .loc-hero{height:65vh !important}
+  .loc-hero-content{padding:0 1.5rem 3rem !important}
+  .loc-hero-btns{flex-direction:column;gap:.6rem !important}
+  .loc-hero-btns a{width:100%;text-align:center;display:block}
+
+  /* ── NAV ── */
+  nav{padding:1rem 1.2rem !important}
+  .nav-logo img{width:200px !important;max-width:200px !important}
+
+  /* ── ABOUT PAGE ── */
+  .opening{grid-template-columns:1fr !important;padding:3rem 1.5rem !important;gap:2rem !important}
+  .story{padding:3.5rem 1.5rem !important}
+  .story-grid{grid-template-columns:1fr !important;gap:2rem !important}
+  .story-img-main{height:260px !important;width:100% !important;object-fit:cover}
+  .values-grid{grid-template-columns:1fr !important;gap:1rem !important}
+  .luna{grid-template-columns:1fr !important;padding:3rem 1.5rem !important;gap:2rem !important}
+  .luna-img{display:none !important}
+  .luna-text{padding:0 !important}
+  .exp-strip-grid{grid-template-columns:1fr !important;gap:1rem !important}
+  .about-cta{padding:4rem 1.5rem !important}
+
+  /* ── DESTINATIONS / LOCATIONS ── */
+  .dest-layout{grid-template-columns:1fr !important;gap:0 !important}
+  .dest-map-col{display:none !important}
+  .dest-list{padding-right:0 !important}
+  .loc-region{padding:3rem 1.5rem !important}
+  .loc-grid{grid-template-columns:1fr !important}
+  .loc-filter-bar{padding:1.5rem !important;gap:.4rem}
+  .loc-filter{font-size:.6rem !important;padding:.4rem .9rem !important}
+  .luna-banner{grid-template-columns:1fr !important;padding:3rem 1.5rem !important;gap:2rem !important}
+
+  /* ── LOCATION DETAIL PAGES ── */
+  .loc-body{grid-template-columns:1fr !important}
+  .loc-main{padding:3rem 1.5rem !important}
+  .loc-sidebar{position:static !important;padding:2.5rem 1.5rem !important;border-left:none !important;border-top:1px solid var(--cream-dark)}
+  .loc-things-grid{grid-template-columns:1fr !important}
+  .loc-accom-features{grid-template-columns:1fr !important}
+  .loc-cta{padding:4rem 1.5rem !important}
+  .loc-cta-btns{flex-direction:column;align-items:center;gap:.8rem !important}
+
+  /* ── ITINERARIES PAGE ── */
+  .journeys-grid{grid-template-columns:1fr !important;gap:1.2rem !important}
+  .journey-card.featured{grid-column:span 1 !important}
+  .journey-card{display:block !important}
+  .journey-img{height:200px !important;width:100% !important;object-fit:cover !important;aspect-ratio:unset !important}
+  .featured-body{padding:1.5rem !important}
+  .journey-card-body{padding:1.5rem !important}
+  .bespoke{padding:3rem 1.5rem !important}
+  .bespoke-form{grid-template-columns:1fr !important}
+
+  /* ── INDIVIDUAL ITINERARY PAGES ── */
+  .summary-strip{flex-wrap:wrap !important;padding:2rem 1.5rem !important;gap:1.5rem !important}
+  .stat-item{min-width:140px}
+  .day-section{grid-template-columns:1fr !important;gap:0 !important}
+  .day-section:nth-child(even){direction:ltr !important}
+  .day-img-wrap{height:240px !important;width:100% !important}
+  .day-img-wrap img{width:100% !important;height:240px !important;object-fit:cover !important}
+  .day-content{padding:2rem 1.5rem !important}
+  .day-number{font-size:3rem !important}
+  .optional-strip{padding:2.5rem 1.5rem !important}
+  .optional-grid{grid-template-columns:1fr !important}
+  .booking-cta{grid-template-columns:1fr !important;padding:3rem 1.5rem !important;gap:2rem !important}
+  .booking-form{grid-template-columns:1fr !important}
+
+  /* ── TOURS PAGE ── */
+  .tours-filter-bar{padding:1.5rem !important;gap:.4rem}
+  .tfilter{font-size:.6rem !important;padding:.35rem .8rem !important}
+  .region-group{padding:2.5rem 1.5rem !important}
+  .tours-grid{grid-template-columns:1fr !important}
+  .tour-modal-box{padding:1.5rem !important}
+
+  /* ── FAQ / TRAVEL TIPS ── */
+  .faq-intro{grid-template-columns:1fr !important;padding:3rem 1.5rem !important;gap:2rem !important}
+  .faq-section{padding:3rem 1.5rem !important}
+  .tip-item{grid-template-columns:1fr !important;gap:0 !important}
+  .tip-item:nth-child(even){direction:ltr !important}
+  .tip-media{height:220px !important}
+  .tip-media-img{height:220px !important;width:100% !important;object-fit:cover !important}
+  .tip-content{padding:2rem 1.5rem !important}
+  .phrases-grid{grid-template-columns:1fr !important}
+  .faq-cta{padding:3.5rem 1.5rem !important}
+
+  /* ── CONTACT PAGE ── */
+  .contact-hero{height:50vh !important}
+  .contact-hero-content{padding:0 1.5rem 3rem !important}
+  .contact-intro{grid-template-columns:1fr !important;padding:3rem 1.5rem !important;gap:2rem !important}
+  .contact-body{grid-template-columns:1fr !important}
+  .contact-form-panel{padding:3rem 1.5rem !important}
+  .contact-info-panel{padding:3rem 1.5rem !important}
+  .form-row{grid-template-columns:1fr !important}
+  .interest-grid{grid-template-columns:1fr !important}
+  .contact-inspiration{padding:3rem 1.5rem !important}
+  .contact-inspiration-grid{grid-template-columns:1fr !important}
+  .contact-cta-btns{flex-direction:column !important;align-items:center}
+
+  /* ── HOMEPAGE ── */
+  .intro-band{grid-template-columns:1fr !important;padding:3rem 1.5rem !important;gap:2rem !important}
+  .exp-header{flex-direction:column !important;align-items:flex-start !important;gap:1rem}
+  .exp-grid{grid-template-columns:1fr !important}
+  .exp-card,.exp-card.tall,.exp-card.wide{aspect-ratio:16/9 !important;grid-column:span 1 !important;grid-row:span 1 !important}
+  .destinations{padding:3.5rem 1.5rem !important}
+  .dest-header{flex-direction:column !important;align-items:flex-start !important;gap:.5rem}
+  .cta-banner{padding:5rem 1.5rem !important}
+  .cta-content{max-width:100% !important}
+  .cta-btns{flex-direction:column !important;align-items:center;gap:.8rem}
+
+  /* ── FOOTER ── */
+  footer{padding:3rem 1.5rem 2rem !important}
+  .footer-grid{grid-template-columns:1fr 1fr !important;gap:2rem !important}
+  .footer-brand{grid-column:span 2 !important;margin-bottom:1rem}
+  .footer-bottom{flex-direction:column !important;gap:.4rem;text-align:center}
+
+  /* ── BUTTONS ── */
+  .btn-primary,.btn-outline,.btn-outline-white,.btn-outline-teal{
+    padding:.8rem 1.5rem !important;
+    font-size:.68rem !important;
+  }
+}
+
+/* ═══════════════════════════════════════════════
+   SMALL MOBILE (max-width:480px)
+═══════════════════════════════════════════════ */
+@media(max-width:480px){
+  .hero-title{font-size:clamp(2.4rem,10vw,3.5rem) !important}
+  .loc-hero-title{font-size:clamp(2.4rem,10vw,3.8rem) !important}
+  .footer-grid{grid-template-columns:1fr !important}
+  .footer-brand{grid-column:span 1 !important}
+  .tours-grid{grid-template-columns:1fr !important}
 }
 
 </style>
